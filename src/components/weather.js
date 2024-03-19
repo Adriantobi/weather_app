@@ -29,7 +29,7 @@ function Airports({ coords, radius }) {
             <TowerControlIcon strokeWidth={1.5} />
             <span>
               <p>{airport?.properties?.state}</p>
-              <h2>{airport?.properties?.name}</h2>
+              <h3>{airport?.properties?.name}</h3>
             </span>
           </div>
         ))}
@@ -315,8 +315,13 @@ export default function WeatherApp({children, page}) {
     <main className={styles.main}>
       <div className={`${styles.body} ${page === 'attractions' ? `${styles.mapHeight}` : ''}`}>
         <Header setCity={setCity} setRadius={setRadius} page={page ? page : null} />
-        <span className={styles.divider} />
-        {size < 760 && !page ? <WeatherInfo weather={weather} place={page === 'attractions' ? place : null} size={size} /> : null}
+        <span className={styles.divider} style={{'borderColor': size < 760 && !page ? 'transparent' : ''}} />
+        {size < 760 && !page ? 
+          <>
+            <WeatherInfo weather={weather} place={page === 'attractions' ? place : null} size={size} />
+            <span className={styles.divider} />
+          </>
+        : null}
         {!children && !page ? <TodayOverview weather={weather} /> : children}
         {page === 'attractions' ? <MapItem coords={weather?.coord ? weather?.coord : {lat:0.0, lon:0.0}} setPlace={setPlace} radius={radius} /> : null}
         {page === 'airports' ? <Airports coords={weather?.coord ? weather?.coord : {lat:0.0, lon:0.0}} radius={radius} /> : null}

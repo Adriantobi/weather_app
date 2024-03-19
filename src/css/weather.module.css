@@ -275,6 +275,11 @@
   opacity: .75;
 }
 
+.airportsWrapper h2 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
 .airportItemWrapper {
   display: flex;
   flex-direction: column;
@@ -294,7 +299,7 @@
   stroke: #2f69fe;
 }
 
-.airportItem span h2, .airportItem span p {
+.airportItem span h3, .airportItem span p {
   padding: 0;
   margin: 0;
 }
@@ -304,7 +309,7 @@
   opacity: .75;
 }
 
-.airportItem span h2 {
+.airportItem span h3 {
   font-size: 1.25rem;
 }
 
