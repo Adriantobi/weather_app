@@ -171,9 +171,17 @@ function WeatherInfo({ weather, place, size }) {
 function RadiusInput({ setRadius }) {
   const [temp, setTemp] = useState(5);
 
+  useEffect(() => {
+    if (JSON.parse(sessionStorage.getItem('radius')) !== null) {
+      setTemp(JSON.parse(sessionStorage.getItem('radius')))
+    }
+  }, []);
+
+
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevents the default form submission behavior
     setRadius(temp); // Call the setCity function with the entered city
+    sessionStorage.setItem('radius', JSON.stringify(temp));
   };
 
   return (
@@ -183,6 +191,7 @@ function RadiusInput({ setRadius }) {
         type="number"
         min={5}
         max={1000}
+        value={temp}
         className={styles.searchText} 
         onChange={(e) => setTemp(e.target.value)}
         placeholder="Radius"
@@ -193,6 +202,11 @@ function RadiusInput({ setRadius }) {
 
 function SearchBar({ setCity, page }) {
   const [temp, setTemp] = useState('');
+  useEffect(() => {
+    if (JSON.parse(sessionStorage.getItem('city')) !== null) {
+      setTemp(JSON.parse(sessionStorage.getItem('city')))
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevents the default form submission behavior
@@ -206,6 +220,7 @@ function SearchBar({ setCity, page }) {
         type="text" 
         className={styles.searchText} 
         onChange={(e) => setTemp(e.target.value)}
+        value={temp}
         placeholder={`Search ${page !== null ? page : `locations` } here`} 
       />
     </form>
