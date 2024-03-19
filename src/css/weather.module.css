@@ -5,6 +5,8 @@
 }
 
 .body {
+  display: flex;
+  flex-direction: column;
   padding: 30px;
   padding-top: 40px;
   width: 100%;
@@ -235,7 +237,6 @@
 
 .maps {
   border-radius: 10px;
-  max-height:30px;
 }
 
 .location {
@@ -304,4 +305,47 @@
 
 .airportItem span h2 {
   font-size: 1.25rem;
+}
+
+@media(width < 1290px) {
+  .header {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+
+@media(width <760px) {
+  .main {
+    flex-direction: column;
+    width: 100vw;
+    overflow-y: scroll;
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    padding: 20px;
+    flex: 0;
+  }
+
+  .weatherWrapper {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .locationSearch {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .searchWrapper {
+    width: 100%;
+  }
+
+  .weatherItemContainer {
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: auto;
+  }
 }
