@@ -22,7 +22,6 @@ function Airports({ coords, radius }) {
 
   return(
     <div className={styles.airportsWrapper}>
-      {console.log(airports)}
       <h2>Airports Near Here</h2>
       <div className={styles.airportItemWrapper}>
         { airports.map((airport, index) => (

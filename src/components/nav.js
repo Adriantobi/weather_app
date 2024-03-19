@@ -21,7 +21,6 @@ export default function Nav() {
       <div className={styles.logo}>
         <img src="https://img.icons8.com/color-glass/48/windsock.png" alt="Logo" width={40} height={40} />
         <h1>Weather</h1>
-        {console.log(size)}
       </div>
       <ul className={styles.menuOptions}>
         <li className={`${location.pathname === '/' ? styles.active : ''} ${styles.menuItem}`}><a href='/'><HomeIcon strokeWidth={1.5} />{size > 575 ? ` Dashboard` : ''}</a></li>
