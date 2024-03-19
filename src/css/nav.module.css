@@ -1,0 +1,70 @@
+.nav {
+  background-color: #eef2f4;
+  min-height: 100%;
+  min-width: 210px;
+  padding: 30px;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.logo {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo h1 {
+  font-size: 1.25rem;
+  color: #2f69fe;
+}
+
+.menuOptions {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  width: fit-content;
+  color: #8e9199;
+}
+
+.menuItem a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: #8e9199;
+  gap: 5px;
+  height: 100%;
+}
+
+.menuItem:hover {
+  opacity: .75;
+}
+
+.active {
+  color: #2f69fe;
+}
+
+.active a {
+  color: #2f69fe;
+}
+
+.active svg {
+  stroke: #2f69fe;
+}
+
+.optionsBottom {
+  position: absolute;
+  justify-content: flex-end;
+  bottom: 0;
+}

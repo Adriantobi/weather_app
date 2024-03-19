@@ -1,0 +1,307 @@
+.main {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.body {
+  padding: 30px;
+  padding-top: 40px;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.date span:first-child {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.date span:last-child {
+  color: #8e9199;
+}
+
+.searchWrapper {
+  background-color: #fbfbfb;
+  border-radius: 5px;
+  display: flex;
+  width: fit-content;
+  justify-content: center;
+  align-items: center;
+  padding-left: 12px;
+  gap: 10px;
+  overflow: hidden;
+  border: 1px transparent solid;
+}
+
+.searchWrapper svg {
+  stroke: #8e9199;
+}
+
+.searchWrapper:focus-within, .searchWrapper:active {
+  border: 1px #8e9199 solid;
+}
+
+.searchWrapper input::-webkit-outer-spin-button,
+.searchWrapper input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.locationSearch {
+  display: flex;
+  gap: 5px
+}
+
+.searchText {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 12px 20px;
+  padding-left: 0;
+  font-size: .95rem;
+}
+
+.searchText::placeholder {
+  color: #8e9199;
+}
+
+.divider {
+  color: #8e9199;
+  display: flex;
+  border-bottom: 1.5px #8e9199 solid;
+  width: 100%;
+  opacity: .25;
+  padding: 20px 0;
+}
+
+.weatherWrapper {
+  background-color: #19314f;
+  max-height: 100%;
+  padding: 40px;
+  min-width: 300px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.weatherHeader {
+  color: #fbfbfb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.weatherLocation {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.weatherLocation span:first-child {
+  font-size: 1.25rem;
+}
+
+.weatherLocation span:last-child {
+  font-size: .95rem;
+  opacity: .75;
+}
+
+.weatherDetails {
+  color: #fbfbfb;
+  display: flex;
+  justify-content: space-between;
+  height: fit-content;
+}
+
+.temperature {
+  font-size: 3rem;
+}
+
+.weatherDescription {
+  text-transform: capitalize;
+  text-wrap: wrap;
+}
+
+.weatherDivider {
+  padding: 10px 0;
+}
+
+.sunTiming {
+  color: #fbfbfb;
+}
+
+.sunTiming h2 {
+  font-size: 1.25rem;
+}
+
+.sunsetriseWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sunTimeItemWrapper {
+  border: 1px solid #5978af;
+  background: #2b477b;
+  border-radius: 5px;
+  padding: 15px 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sunItemData {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.sunItemData span {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sunItemData span h3 {
+  font-size: .95rem;
+  opacity: .75;
+}
+
+.sunItemData span h3, .sunItemData span p {
+  margin: 0;
+}
+
+.sunItemData span p {
+  font-size: 1.25rem;
+}
+
+.overView {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.overViewTitle {
+  padding: 20px 0;
+}
+
+.weatherItemContainer {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.weatherItemWrapper {
+  border-radius: 5px;
+  background: #fbfbfb;
+  padding: 25px 15px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.weatherItemWrapper svg {
+  stroke: #2f69fe;
+}
+
+.weatherItemData {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.weatherItemData span:first-child { 
+  font-size: .85rem;
+  opacity: .75;
+}
+
+.weatherItemData span:last-child {
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+.maps {
+  border-radius: 10px;
+  max-height:30px;
+}
+
+.location {
+  color: #fbfbfb;
+  padding-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.location svg {
+  width: 24px;
+  height: 24px;
+}
+
+.location span {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.location span h4 {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.location span p {
+  text-wrap: wrap;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  font-size: .95rem;
+  opacity: .75;
+}
+
+.airportItemWrapper {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  gap: 20px;
+}
+
+.airportItem {
+  display: flex;
+  background: #fbfbfb;
+  padding: 15px 20px;
+  align-items: center;
+  gap: 15px;
+}
+
+.airportItem svg {
+  stroke: #2f69fe;
+}
+
+.airportItem span h2, .airportItem span p {
+  padding: 0;
+  margin: 0;
+}
+
+.airportItem span p {
+  font-size: .85rem;
+  opacity: .75;
+}
+
+.airportItem span h2 {
+  font-size: 1.25rem;
+}
