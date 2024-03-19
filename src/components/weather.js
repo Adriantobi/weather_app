@@ -313,7 +313,7 @@ export default function WeatherApp({children, page}) {
 
   return (
     <main className={styles.main}>
-      <div className={styles.body}>
+      <div className={`${styles.body} ${page === 'attractions' ? `${styles.mapHeight}` : ''}`}>
         <Header setCity={setCity} setRadius={setRadius} page={page ? page : null} />
         <span className={styles.divider} />
         {size < 760 && !page ? <WeatherInfo weather={weather} place={page === 'attractions' ? place : null} size={size} /> : null}
