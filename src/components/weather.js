@@ -266,9 +266,32 @@ export default function WeatherApp({children, page}) {
   },[])
 
   useEffect(() => {
-    setCity(JSON.parse(sessionStorage.getItem('city')) !== null ? JSON.parse(sessionStorage.getItem('city')) : 'Epsom');
+    setCity(JSON.parse(sessionStorage.getItem('city')) !== null ? JSON.parse(sessionStorage.getItem('city')) : getLocation());
     setRadius(JSON.parse(sessionStorage.getItem('radius')) !== null ? JSON.parse(sessionStorage.getItem('radius')) : 5);
   },[])
+  
+  const getLocation = async () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          try {
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=YOUR_OPENWEATHERMAP_API_KEY`);
+            const data = await response.json();
+            return data.name;
+          } catch (error) {
+            console.error('Error fetching city:', error);
+          }
+        },
+        (error) => {
+          console.error('Error getting location:', error);
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+      return 'Epsom';
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
