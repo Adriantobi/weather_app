@@ -17,7 +17,7 @@ export default function Nav() {
     },[])
 
   return (
-    <div className={styles.nav}>
+    <div className={styles.nav} onClick={() => window.location.href = '/'}>
       <div className={styles.logo}>
         <img src="https://img.icons8.com/color-glass/48/windsock.png" alt="Logo" width={40} height={40} />
         <h1>Weather</h1>
