@@ -57,7 +57,7 @@ function MapItem({coords, radius, setPlace}) {
 
   return (
     <APIProvider apiKey={process.env.REACT_APP_MAPS_API_KEY}>
-      <Map center={position} zoom={12} className={styles.map}>
+      <Map center={position} zoom={12} style={{'borderRadius': '5px', 'outline': 'none', 'borderTop': '0px', 'marginTop':'20px'}}>
         {touristLocations.map((location, index) => (
           <Marker key={index} onClick={() => setPlace(location)} position={{ lat: Number(location?.properties?.lat), lng: Number(location?.properties?.lon) }} />
         ))}
