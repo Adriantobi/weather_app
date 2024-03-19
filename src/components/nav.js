@@ -20,7 +20,7 @@ export default function Nav() {
     <div className={styles.nav}>
       <div className={styles.logo} onClick={() => window.location.href = '/'}>
         <img src="https://img.icons8.com/color-glass/48/windsock.png" alt="Logo" width={40} height={40} />
-        <h1>Weather</h1>
+        {size > 760 ? <h1>Weather</h1> : null}
       </div>
       <ul className={styles.menuOptions}>
         <li className={`${location.pathname === '/' ? styles.active : ''} ${styles.menuItem}`}><a href='/'><HomeIcon strokeWidth={1.5} />{size > 575 ? ` Dashboard` : ''}</a></li>
