@@ -110,14 +110,14 @@ function SunComponent({time, sunrise, timezone}) {
   )
 }
 
-function WeatherInfo({ weather, place }) {
+function WeatherInfo({ weather, place, size }) {
   const [dateState, setDateState] = useState(new Date());
   useEffect(() => {
     setInterval(() => setDateState(new Date()), 1000);
   }, []);
 
   return (
-    <div className={styles.weatherWrapper}>
+    <div className={`${styles.weatherWrapper} ${size && size < 760 ?  `${styles.weatherUp}` : ''}`}>
       <div className={styles.weatherHeader}>
         <div className={styles.weatherLocation}>
           <span>{weather?.name}</span>
@@ -174,7 +174,6 @@ function RadiusInput({ setRadius }) {
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevents the default form submission behavior
     setRadius(temp); // Call the setCity function with the entered city
-    sessionStorage.setItem('radius', JSON.stringify(temp));
   };
 
   return (
@@ -198,7 +197,6 @@ function SearchBar({ setCity, page }) {
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevents the default form submission behavior
     setCity(temp); // Call the setCity function with the entered city
-    sessionStorage.setItem('city', JSON.stringify(temp));
   };
 
   return (
@@ -240,17 +238,36 @@ export default function WeatherApp({children, page}) {
   const [city, setCity] = useState('Epsom');
   const [radius, setRadius] = useState(5);
   const [weather, setWeather] = useState(null);
-  const [place, setPlace] = useState(null)
+  const [place, setPlace] = useState(null);
+  const [size, setSize] = useState()
+
+  useEffect(() => {
+    const resize = () => {
+      setSize(window.innerWidth);
+    }
+
+    window.onload = resize()
+    window.addEventListener('resize', resize)
+  },[])
 
   useEffect(() => {
     setCity(JSON.parse(sessionStorage.getItem('city')) !== null ? JSON.parse(sessionStorage.getItem('city')) : 'Epsom');
-    setRadius(JSON.parse(sessionStorage.getItem('radius')) !== null ? JSON.parse(sessionStorage.getItem('radius')) : 5000);
+    setRadius(JSON.parse(sessionStorage.getItem('radius')) !== null ? JSON.parse(sessionStorage.getItem('radius')) : 5);
   },[])
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`);
-      setWeather(await data.json());
+      try {
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data = await response.json();
+        setWeather(data);
+        sessionStorage.setItem('city', JSON.stringify(city));
+      } catch (error) {
+        console.error('error fetching airport locations:', error);
+      }
     }
     fetchData();
   },[city])
@@ -261,11 +278,12 @@ export default function WeatherApp({children, page}) {
       <div className={styles.body}>
         <Header setCity={setCity} setRadius={setRadius} page={page ? page : null} />
         <span className={styles.divider} />
+        {size < 760 && !page ? <WeatherInfo weather={weather} place={page === 'attractions' ? place : null} size={size} /> : null}
         {!children && !page ? <TodayOverview weather={weather} /> : children}
         {page === 'attractions' ? <MapItem coords={weather?.coord ? weather?.coord : {lat:0.0, lon:0.0}} setPlace={setPlace} radius={radius} /> : null}
         {page === 'airports' ? <Airports coords={weather?.coord ? weather?.coord : {lat:0.0, lon:0.0}} radius={radius} /> : null}
       </div>
-      <WeatherInfo weather={weather} place={page === 'attractions' ? place : null} />
+      {size > 760 || page ? <WeatherInfo weather={weather} place={page === 'attractions' ? place : null} /> : null}
     </main>
   )
 }

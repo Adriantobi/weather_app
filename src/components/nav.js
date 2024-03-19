@@ -4,21 +4,21 @@ import { useLocation } from 'react-router-dom';
 import styles from '../css/nav.module.css';
 
 export default function Nav() {
-  const location = useLocation(); 
+  const location = useLocation();
   const [size, setSize] = useState()
 
-    useEffect(() => {
-        const resize = () => {
-          setSize(window.innerWidth);
-        }
+  useEffect(() => {
+    const resize = () => {
+      setSize(window.innerWidth);
+    }
 
-        window.onload = resize()
-        window.addEventListener('resize', resize)
-    },[])
+    window.onload = resize()
+    window.addEventListener('resize', resize)
+  },[])
 
   return (
-    <div className={styles.nav} onClick={() => window.location.href = '/'}>
-      <div className={styles.logo}>
+    <div className={styles.nav}>
+      <div className={styles.logo} onClick={() => window.location.href = '/'}>
         <img src="https://img.icons8.com/color-glass/48/windsock.png" alt="Logo" width={40} height={40} />
         <h1>Weather</h1>
       </div>
