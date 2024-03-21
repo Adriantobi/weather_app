@@ -87,7 +87,7 @@ function TodayOverview({weather}) {
         <WeatherItem icon={<WindIcon strokeWidth={1.5} />} title="Wind Speed" value={`${weather?.wind?.speed}m/s`} />
         <WeatherItem icon={<DropletsIcon strokeWidth={1.5} />} title="Humidity" value={`${weather?.main?.humidity}%`} />
         <WeatherItem icon={<GaugeIcon strokeWidth={1.5} />} title="Pressure" value={`${weather?.main?.pressure} hPa`} />
-        <WeatherItem icon={<ThermometerIcon strokeWidth={1.5} />} title="Feels Like" value={`${weather?.main?.feels_like}° C`} />
+        <WeatherItem icon={<ThermometerIcon strokeWidth={1.5} />} title="Feels Like" value={`${Math.round(Number(weather?.main?.feels_like))}° C`} />
       </div>
     </div>
   )
